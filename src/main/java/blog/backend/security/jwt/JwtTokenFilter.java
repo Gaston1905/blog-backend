@@ -1,9 +1,5 @@
 package blog.backend.security.jwt;
 
-import javax.servlet.FilterChain;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,33 +15,32 @@ import blog.backend.domain.User;
 
 @Component
 public
- class JwtTokenFilter {
+ class JwtTokenFilter extends OncePerRequestFilter {
     @Autowired
     private JwtTokenUtil jwtUtil;
 
     @Override
-    protected void doFilterInternal(HttpServletRequest request,
-                                    HttpServletResponse response, FilterChain filterChain)
-                                throws ServletException, IOException {
-
-                                    if(!hasAuthorizationBearer(request)) {
-                                        filterChain.doFilter(request, response);
-                                        return;
-                                    }
-                                    
-                                    String token = getAccessToken(request);
-                                    
-                                    if (!jwtUtil.validateAccessToken(token)) {
-                                        filterChain.doFilter(request, response);
-                                    }
-                                    
-                                    setAuthenticationContext(token, request);
-                                    filterChain.doFilter(request, response);
-                                    
-                                }
-                           
-
-    private boolean hasAuthorizationBearer(HttpServletRequest request) {
+    protected void doFilterInternal(jakarta.servlet.http.HttpServletRequest request,
+            jakarta.servlet.http.HttpServletResponse response, jakarta.servlet.FilterChain filterChain)
+            throws jakarta.servlet.ServletException, IOException {
+                if(!hasAuthorizationBearer(request)) {
+                    filterChain.doFilter(request, response);
+                    return;
+                }
+                
+                String token = getAccessToken(request);
+                
+                if (!jwtUtil.validateAccessToken(token)) {
+                    filterChain.doFilter(request, response);
+                }
+                
+                setAuthenticationContext(token, request);
+                filterChain.doFilter(request, response);
+                
+        
+    }
+             
+    private boolean hasAuthorizationBearer(jakarta.servlet.http.HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         if (ObjectUtils.isEmpty(header) || !header.startsWith("Bearer")) {
             return false;
@@ -54,13 +49,13 @@ public
         return true;
     }
 
-    private String getAccessToken(HttpServletRequest request) {
+    private String getAccessToken(jakarta.servlet.http.HttpServletRequest request) {
         String header = request.getHeader("Authorization");
         String token = header.split(" ")[1].trim();
         return token;
     }
 
-    private void setAuthenticationContext(String token, HttpServletRequest request) {
+    private void setAuthenticationContext(String token, jakarta.servlet.http.HttpServletRequest request) {
         UserDetails userDetails = getUserDetails(token);
 
         UsernamePasswordAuthenticationToken
@@ -82,6 +77,8 @@ public
 
         return userDetails;
     }
+
+
 
 }
 

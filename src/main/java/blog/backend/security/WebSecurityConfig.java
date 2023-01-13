@@ -1,5 +1,7 @@
  package blog.backend.security;
 
+import javax.servlet.Filter;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,7 +17,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import blog.backend.repository.UserRepository;
-import blog.backend.security.jwt.JwtTokenFilter;
+import blog.backend.security.jwt.*;
 
 @Configuration
 @EnableWebSecurity
@@ -61,7 +63,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .httpBasic();
 
-        http.addFilterBefore(jwtTokenFilter, UsernamePasswordAuthenticationFilter.class);
+            http.addFilter((Filter) new JwtTokenFilterWrapper(jwtTokenFilter));
         }
 
 }
