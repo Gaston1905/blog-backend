@@ -37,12 +37,16 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String setUsername() {
-        return username;
+    public Integer getId() {
+        return id;
     }
-    
+
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String gettUsername() {
+        return username;
     }
 
     public void setPassword(String password) {
