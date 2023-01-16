@@ -26,10 +26,11 @@ public class KeyStoreServiceImpl implements KeyStoreService {
         try {
             keystore = KeyStore.getInstance("JKS");
             InputStream is = KeyStoreServiceImpl.class.getResourceAsStream("/keystore.jks");
+            keystore.load(is, "secret".toCharArray());
             caKey = keystore.getKey("organization", "secret".toCharArray());
             keyCache = new ConcurrentHashMap<>();
             keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-            SecureRandom secureRandom = SecureRandom.getInstance("NativePRNG");
+            SecureRandom secureRandom = new SecureRandom();
             keyPairGenerator.initialize(2048, secureRandom);
         } catch (Exception e) {
             throw new KeyStoreInitializationException(e);
@@ -44,7 +45,7 @@ public class KeyStoreServiceImpl implements KeyStoreService {
         @Override
         public Key createUserKey(UserId userId) {
             KeyPair keyPair = keyPairGenerator.generateKeyPair();
-            keyCache.put(userId. keyPair);
+            keyCache.put(userId, keyPair);
             return keyPair.getPrivate();
         }
 
@@ -62,9 +63,5 @@ public class KeyStoreServiceImpl implements KeyStoreService {
             public boolean removeUserKey(UserId userId) {
                 return keyCache.remove(userId) != null;
             }
-
-            
-        
-    
     
 }

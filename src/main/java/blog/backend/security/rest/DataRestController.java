@@ -21,8 +21,8 @@ public class DataRestController {
 
     private final DataService dataService;
 
-    @Autowired
-    public DataRestController (DataService DataService) {
+    // @Autowired
+    public DataRestController (DataService dataService) {
         this.dataService = dataService;
     }
 

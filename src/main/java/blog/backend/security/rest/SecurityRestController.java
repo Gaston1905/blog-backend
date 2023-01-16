@@ -27,7 +27,7 @@ public class SecurityRestController {
     private final UserAccessService userAccessService;
     private final HttpServletRequest request;
 
-    @Autowired
+    // @Autowired
     public SecurityRestController(UserAccessService userAccessService, HttpServletRequest request) {
         this.userAccessService = userAccessService;
         this.request = request;

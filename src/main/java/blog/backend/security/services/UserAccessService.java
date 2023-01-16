@@ -5,6 +5,8 @@ import io.jsonwebtoken.Jws;
 
 import java.util.Optional;
 
+import org.springframework.stereotype.Component;
+
 import blog.backend.security.services.dto.JWToken;
 import blog.backend.security.services.dto.LoginRequest;
 import blog.backend.security.services.dto.UserData;
@@ -12,6 +14,7 @@ import blog.backend.security.services.dto.UserData;
 /**
  * Service controlling user access
  */
+@Component
 public interface UserAccessService {
     
     /**

@@ -25,7 +25,7 @@ public interface KeyStoreService {
           * @return
           */
 
-      Key createUserKey(UserId userId);
+        Key createUserKey(UserId userId);
       
             /**
              * Get user key from cache)
