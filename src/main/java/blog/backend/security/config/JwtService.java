@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class JwtService {
 
-  private static final String SECRET_KEY = "404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970";
+  private static final String SECRET_KEY = "357638792F423F4428472B4B6250655368566D597133743677397A2443264629";
 
   public String extractUsername(String token) {
     return extractClaim(token, Claims::getSubject);
@@ -33,8 +33,7 @@ public class JwtService {
 
   public String generateToken(
       Map<String, Object> extraClaims,
-      UserDetails userDetails
-  ) {
+      UserDetails userDetails) {
     return Jwts
         .builder()
         .setClaims(extraClaims)
