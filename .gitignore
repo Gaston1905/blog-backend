@@ -31,3 +31,6 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Excluir el script SQL específico
+src/main/resources/script.sql
