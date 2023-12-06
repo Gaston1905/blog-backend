@@ -1,15 +1,14 @@
 package blog.backend.payloads;
 
-import java.util.*;
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 
 @Getter
 @Setter
@@ -17,7 +16,8 @@ import lombok.Setter;
 public class UserDto {
 
   private int id;
-  @NotEmpty
+
+  @NotEmpty(message = "Introduzca un nombre")
   @Size(min = 4, message = "El nombre debe tener más de 4 caracteres.")
   private String name;
 
@@ -33,8 +33,6 @@ public class UserDto {
   @Size(min = 4, message = "about debe tener más de 4 caracteres")
   @NotEmpty
   private String about;
-
-  // private List<RoleDto> roles = new ArrayList<>();
 
   @JsonIgnore()
   public String getPassword() {

@@ -2,7 +2,6 @@ package blog.backend.post.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,13 +20,13 @@ import blog.backend.post.entity.Post;
 import blog.backend.post.repository.CategoryRepository;
 import blog.backend.post.repository.PostRepository;
 import blog.backend.user.UserRepository;
-import io.jsonwebtoken.io.IOException;
 import jakarta.persistence.criteria.Path;
 import jakarta.transaction.Transactional;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -37,6 +36,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.modelmapper.ModelMapper;
 
 @Service
@@ -112,8 +112,8 @@ public class PostServiceImpl implements PostService {
       filename = fileCode + "_" + filename;
       post.setImageName(filename);
       post = postRepository.save(post);
-      Path filePath = (Path) uploadPath.resolve(filename);
-      // Files.copy(inputStream, filePath);
+      java.nio.file.Path filePath = uploadPath.resolve(filename);
+      Files.copy(inputStream, filePath, StandardCopyOption.REPLACE_EXISTING);
       return mapper.map(post, PostDto.class);
     } catch (IOException ioe) {
       throw new IOException("La imagen no ha podido ser guardada");
