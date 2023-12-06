@@ -24,16 +24,17 @@ public class Post {
   @Column(name = "post_id")
   private int id;
 
-  @Column(name = "post_title")
+  @Column(name = "post_title", nullable = false)
   private String title;
 
   private String imageName;
 
   private String description;
 
-  @Column(columnDefinition = "longtext")
+  @Column(columnDefinition = "TEXT", nullable = false)
   private String content;
 
+  @Temporal(TemporalType.TIMESTAMP)
   private Date addedDate;
 
   @ManyToOne
@@ -47,8 +48,10 @@ public class Post {
   @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
   private Set<Comment> comments = new HashSet<>();
 
+  @Column(name = "like_counts", nullable = false)
   private Long likeCounts = 0L;
 
+  @Column(name = "dislike_counts", nullable = false)
   private Long dislikeCounts = 0L;
 
 }
