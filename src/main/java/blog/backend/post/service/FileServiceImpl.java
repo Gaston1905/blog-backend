@@ -9,6 +9,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import io.jsonwebtoken.io.IOException;
@@ -16,7 +17,7 @@ import io.jsonwebtoken.io.IOException;
 public class FileServiceImpl implements FileService {
 
   @Override
-  public String savedFileName(MultipartFile multipartFile, String path) throws IOException {
+  public String savedFileName(MultipartFile multipartFile, String path) throws IOException, java.io.IOException {
     Path uploadPath = Paths.get(path);
     String fileName = multipartFile.getOriginalFilename();
     if (!Files.exists(uploadPath)) {
