@@ -16,7 +16,7 @@ public interface PostService {
 
   PostDto updatePost(PostDto postDto, int id);
 
-  void deletePost(PostDto postDto) throws IOException;
+  void deletePost(PostDto postDto) throws IOException, java.io.IOException;
 
   PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
 
@@ -28,7 +28,7 @@ public interface PostService {
 
   List<PostDto> searchPost(String keyword);
 
-  PostDto uploadImage(String filename, MultipartFile file, int id) throws IOException;
+  PostDto uploadImage(String filename, MultipartFile file, int id) throws IOException, java.io.IOException;
 
   InputStream getImage(Integer id) throws FileNotFoundException;
 

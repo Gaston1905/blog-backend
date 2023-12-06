@@ -20,7 +20,6 @@ import blog.backend.post.entity.Post;
 import blog.backend.post.repository.CategoryRepository;
 import blog.backend.post.repository.PostRepository;
 import blog.backend.user.UserRepository;
-import jakarta.persistence.criteria.Path;
 import jakarta.transaction.Transactional;
 
 import java.io.File;
