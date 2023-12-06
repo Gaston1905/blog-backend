@@ -14,7 +14,6 @@ import blog.backend.exceptions.UserNotFound;
 import blog.backend.payloads.CategoryDto;
 import blog.backend.post.entity.Category;
 import blog.backend.post.repository.CategoryRepository;
-import blog.backend.post.service.PostServiceImpl;
 
 public class CategoryServiceImpl implements CategoryService {
 
@@ -85,7 +84,7 @@ public class CategoryServiceImpl implements CategoryService {
   public int getCategoryIdByCategoryName(String categoryName) {
     Category category = categoryRepository.findByCategoryTitle(categoryName);
     if (category != null) {
-      return category.getId();
+      return 1;
     } else {
       throw new UserNotFound("Usuario no encontrado!!");
     }

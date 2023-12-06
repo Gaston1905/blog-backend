@@ -8,16 +8,16 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import blog.backend.post.entity.Category;
-import blog.backend.post.entity.PostEntity;
+import blog.backend.post.entity.Post;
 
-public interface PostRepository extends JpaRepository<PostEntity, Integer> {
+public interface PostRepository extends JpaRepository<Post, Integer> {
 
-  List<PostEntity> findByCategory(Category category);
+  List<Post> findByCategory(Category category);
 
-  Page<PostEntity> findByUserId(int userId, Pageable pageable);
+  Page<Post> findByUserId(int userId, Pageable pageable);
 
   @Query("select p from Post p where title like %?1% Or content like %?1%")
-  List<PostEntity> findBytitleOrContentContains(String keyword);
+  List<Post> findBytitleOrContentContains(String keyword);
 
-  Page<PostEntity> findAllByCategoryId(int categoryId, Pageable pageable);
+  Page<Post> findAllByCategoryId(int categoryId, Pageable pageable);
 }

@@ -1,14 +1,36 @@
 package blog.backend.post.service;
 
-import blog.backend.post.entity.PostEntity;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
+
+import blog.backend.payloads.PostDto;
+import blog.backend.payloads.PostResponse;
+import io.jsonwebtoken.io.IOException;
 
 public interface PostService {
 
-  public PostEntity createPost(PostEntity postDTO, int userId, int categoryId);
+  PostDto createPost(PostDto postDto, int userId, int categoryId);
 
-  public PostEntity getPostById(long postId);
+  PostDto updatePost(PostDto postDto, int id);
 
-  public PostEntity updatePost(PostEntity postDTO, long postId);
+  void deletePost(PostDto postDto) throws IOException;
 
-  public void deletePost(long postId);
+  PostResponse getAllPost(Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
+
+  PostDto getPostById(int postId);
+
+  List<PostDto> getPostByCategory(int categoryId);
+
+  PostResponse getPostByUser(int userId, Integer pageNumber, Integer pageSize, String sortBy, String sortDir);
+
+  List<PostDto> searchPost(String keyword);
+
+  PostDto uploadImage(String filename, MultipartFile file, int id) throws IOException;
+
+  InputStream getImage(Integer id) throws FileNotFoundException;
+
+  void storeLikeCounts(Integer postId, Long likeCounts, Long dislikeCounts);
 }

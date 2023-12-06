@@ -21,6 +21,6 @@ public class Category {
   private String categoryDescription;
 
   @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private List<PostEntity> posts = new ArrayList<>();
+  private List<Post> posts = new ArrayList<>();
 
 }
