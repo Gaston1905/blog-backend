@@ -4,12 +4,14 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.List;
 
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import blog.backend.payloads.PostDto;
 import blog.backend.payloads.PostResponse;
 import io.jsonwebtoken.io.IOException;
 
+@Service
 public interface PostService {
 
   PostDto createPost(PostDto postDto, int userId, int categoryId);

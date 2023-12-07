@@ -34,10 +34,10 @@ public class User implements UserDetails {
   @Enumerated(EnumType.STRING)
   private Role role;
 
-  @Override
-  public Collection<? extends GrantedAuthority> getAuthorities() {
-    return List.of(new SimpleGrantedAuthority(role.name()));
-  }
+  // @Override
+  // public Collection<? extends GrantedAuthority> getAuthorities() {
+  // return List.of(new SimpleGrantedAuthority(role.name()));
+  // }
 
   @Override
   public String getPassword() {
@@ -67,5 +67,11 @@ public class User implements UserDetails {
   @Override
   public boolean isEnabled() {
     return true;
+  }
+
+  @Override
+  public Collection<? extends GrantedAuthority> getAuthorities() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getAuthorities'");
   }
 }

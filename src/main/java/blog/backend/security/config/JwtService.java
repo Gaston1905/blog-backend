@@ -27,17 +27,21 @@ public class JwtService {
     return claimsResolver.apply(claims);
   }
 
-  public String generateToken(UserDetails userDetails) {
-    return generateToken(new HashMap<>(), userDetails);
+  public String generateToken(Object user) {
+    return generateToken(new HashMap<>(), user);
+  }
+
+  private String generateToken(Object hashMap, Object user) {
+    return null;
   }
 
   public String generateToken(
-      Map<String, Object> extraClaims,
-      UserDetails userDetails) {
+      Claims hashMap,
+      Object user) {
     return Jwts
         .builder()
-        .setClaims(extraClaims)
-        .setSubject(userDetails.getUsername())
+        .setClaims(hashMap)
+        .setSubject(((UserDetails) user).getUsername())
         .setIssuedAt(new Date(System.currentTimeMillis()))
         .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 24))
         .signWith(getSignInKey(), SignatureAlgorithm.HS256)

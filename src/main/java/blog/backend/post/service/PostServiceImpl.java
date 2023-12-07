@@ -188,9 +188,9 @@ public class PostServiceImpl implements PostService {
     post.setDescription(postDto.getDescription());
     post.setLikeCounts(post.getDislikeCounts());
     post.setDislikeCounts(post.getDislikeCounts());
-    if (!postDto.getImageName().isBlank()) {
-      post.setImageName(postDto.getImageName());
-    }
+    // if (!postDto.getImageName().isBlank()) {
+    // post.setImageName(postDto.getImageName());
+    // }
     post.setAddedDate(new Date());
     Category category = categoryRepository.findById(postDto.getCategory().getId())
         .orElseThrow(() -> new CategoryNotFound("Categoría no encontrada"));

@@ -3,18 +3,17 @@ package blog.backend.post.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import blog.backend.payloads.CategoryDto;
 import blog.backend.post.service.CategoryService;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
+@ComponentScan(basePackages = "blog.backend.post.controller")
 @RequestMapping("/api/v1/categories")
 public class CategoryController {
 

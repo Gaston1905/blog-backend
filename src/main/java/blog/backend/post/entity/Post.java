@@ -2,8 +2,6 @@ package blog.backend.post.entity;
 
 import java.util.*;
 
-import javax.xml.stream.events.Comment;
-
 import blog.backend.user.User;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -44,9 +42,6 @@ public class Post {
   @ManyToOne
   @JoinColumn(name = "user_id")
   private User user;
-
-  @OneToMany(mappedBy = "post", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-  private Set<Comment> comments = new HashSet<>();
 
   @Column(name = "like_counts", nullable = false)
   private Long likeCounts = 0L;

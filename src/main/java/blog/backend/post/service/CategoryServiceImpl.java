@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import blog.backend.exceptions.CategoryAlreadyExists;
 import blog.backend.exceptions.CategoryNotFound;
@@ -15,6 +16,7 @@ import blog.backend.payloads.CategoryDto;
 import blog.backend.post.entity.Category;
 import blog.backend.post.repository.CategoryRepository;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
   @Autowired
